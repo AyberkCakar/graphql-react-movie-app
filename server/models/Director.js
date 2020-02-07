@@ -6,4 +6,4 @@ const directorSchema = new Schema({
     birth: Number
 });
 
-module.exports = mongoose.mod el('Director', directorSchema);
+module.exports = mongoose.model('Director', directorSchema);
