@@ -18,7 +18,7 @@ const {
 const MovieType = new GraphQLObjectType({
     name: 'Movie',
     fields: () => ({
-        id: { type: GraphQLID },
+        id: { type: GraphQLString },
         title: { type: GraphQLString },
         description: { type: GraphQLString },
         year: { type: GraphQLInt },
@@ -37,7 +37,7 @@ const DirectorType = new GraphQLObjectType({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
         birth: { type: GraphQLInt },
-        movie: {
+        movies: {
             type: new GraphQLList(MovieType),
             resolve(parent, args ){
                 return Movie.find({ directorId: parent.id });
@@ -51,7 +51,7 @@ const RootQuery = new GraphQLObjectType({
     fields: {
         movie: {
             type: MovieType,
-            args: {id: {type: GraphQLID}},
+            args: {id: {type: GraphQLString}},
             resolve(parent, args) {
                 return Movie.findById(args.id);
             }
